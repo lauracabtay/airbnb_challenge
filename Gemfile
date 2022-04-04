@@ -9,6 +9,8 @@ gem "rspec"
 gem "capybara"
 gem "rake"
 gem 'pg'
+gem 'webrick'
+
 
 gem 'capybara', group: :test
 gem 'rspec', group: :test
