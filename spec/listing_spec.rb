@@ -25,4 +25,20 @@ RSpec.describe Listing do
       expect(listing_view.first.title).to eq "2 bed apartment"
     end
   end
+
+  describe '.create' do
+    it "creates a new listing" do
+      # connection = PG.connect(dbname: 'makersbnb_test')
+
+      Listing.create(title: 'Luxury apartment in Chelsea', description: 'Lorem ipsum dolor sit amet.', location: 'London', price_per_night: 600.00)
+
+      listings = Listing.all
+
+      expect(listings.length).to eq 1
+      expect(listings.first).to be_a Listing
+      expect(listings.first.title). to eq 'Luxury apartment in Chelsea'
+      expect(listings.first.location). to eq 'London'
+      expect(listings.first.price_per_night). to eq "600.00"
+    end
+  end
 end

@@ -26,4 +26,34 @@ class Listing
       price_per_night: listing['price_per_night'])
     end
   end
+
+    def self.view_property(id:)
+      if ENV['ENVIRONMENT'] == 'test' 
+        connection = PG.connect(dbname: "makersbnb_test")
+      else
+        connection = PG.connect(dbname: 'makersbnb')
+      end
+      result = connection.exec("SELECT * FROM listing WHERE id = $1;", [id])
+        Listing.new(id: result['id'],
+        title: result['title'],
+        description: result['description'],
+        location: result['location'],
+        price_per_night: result['price_per_night'])
+    end
+
+  def self.create(title:, description:, location:, price_per_night:)
+    if ENV['ENVIRONMENT'] == 'test' 
+      connection = PG.connect(dbname: "makersbnb_test")
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+
+    result = connection.exec_params("INSERT INTO listing (title, description, location, price_per_night) 
+    VALUES ($1, $2, $3, $4) 
+    RETURNING id, title, description, location, price_per_night;",
+    [title, description, location, price_per_night])
+
+    Listing.new(id: result[0]['id'], title: result[0]['title'], description: result[0]['description'], 
+    location: result[0]['location'], price_per_night: result[0]['price_per_night'])
+  end
 end
