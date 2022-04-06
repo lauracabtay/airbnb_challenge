@@ -2,6 +2,11 @@
   <input type='submit' value='Create a new listing'>
 </form>
 
+<form action='/location-search' method="get">
+  <input type='text' name="location" placeholder="Where would you like to go?">
+  <input type='submit' value='Search'>
+</form>
+  
 <% @listings.each do |listing| %>
   <div class = "entry">
   <a href="../listings/<%= listing.id %>"><%= listing.title %></a>

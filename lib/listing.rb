@@ -27,17 +27,17 @@ class Listing
     end
   end
 
-    def self.find_property_by_id(id:)
-      if ENV['ENVIRONMENT'] == 'test' 
-        connection = PG.connect(dbname: "makersbnb_test")
-      else
-        connection = PG.connect(dbname: 'makersbnb')
-      end
-      result = connection.exec("SELECT * FROM listing WHERE id = $1;", [id])
-      result.map do |listing|
-        Listing.new(id: listing['id'], title: listing['title'], description: listing['description'], location: listing['location'], price_per_night: listing['price_per_night'])
-      end
-      end
+  def self.find_property_by_id(id:)
+    if ENV['ENVIRONMENT'] == 'test' 
+      connection = PG.connect(dbname: "makersbnb_test")
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+    result = connection.exec("SELECT * FROM listing WHERE id = $1;", [id])
+    result.map do |listing|
+      Listing.new(id: listing['id'], title: listing['title'], description: listing['description'], location: listing['location'], price_per_night: listing['price_per_night'])
+    end
+  end
 
   def self.create(title:, description:, location:, price_per_night:)
     if ENV['ENVIRONMENT'] == 'test' 
@@ -53,5 +53,18 @@ class Listing
 
     Listing.new(id: result[0]['id'], title: result[0]['title'], description: result[0]['description'], 
     location: result[0]['location'], price_per_night: result[0]['price_per_night'])
+  end
+
+  def self.search(location:)
+    if ENV['ENVIRONMENT'] == 'test' 
+      connection = PG.connect(dbname: "makersbnb_test")
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+
+    result = connection.exec_params("SELECT * FROM listing WHERE location = $1;",[location])
+    result.map do |listing|
+      Listing.new(id: listing['id'], title: listing['title'], description: listing['description'], location: listing['location'], price_per_night: listing['price_per_night'])
+    end
   end
 end

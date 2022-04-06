@@ -27,6 +27,11 @@ class MakersBnB < Sinatra::Base
     @property = Listing.find_property_by_id(id: params[:id])
     erb :property_view
   end
-  
+
+  get '/location-search' do
+    @location_search = Listing.search(location: params[:location])
+    erb :location_listings
+  end
+    
   run! if app_file == $0
 end
