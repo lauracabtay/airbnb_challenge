@@ -29,7 +29,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/listing-search' do
-    @listing_search = Listing.search(location: params[:location], keyword: params[:keyword])
+    @listing_search = Listing.search(location: params[:location], keyword: params[:keyword], max_price: params[:max_price])
     erb :search_listings
   end
     

@@ -86,27 +86,36 @@ RSpec.describe Listing do
               800.00
           );")
 
-      listing = Listing.search(location: "Camden Town", keyword:"studio")
+      listing = Listing.search(location: "Camden Town", keyword:"studio", max_price: 600.00)
       expect(listing.length).to eq 1
       expect(listing.first.title).to eq 'Lovely studio in Camden Town'
       expect(listing.first.location).to eq 'Camden Town'
     end
 
-    it "pulls the listings according to keyword" do
+    it "pulls the listings according to price" do
       Listing.create(title: '2 bed  apartment', description: 'ipsum dolor sit amet', location:'London', price_per_night: 350.00)
       Listing.create(title: 'Lovely studio in Camden Town', description: 'Lorem ipsum dolor sit amet', location:'London', price_per_night: 280.00)
+      Listing.create(title: '3 bed flat in Camden Town', description: 'Lorem ipsum dolor sit amet', location:'Camden Town', price_per_night: 900.00)
+      Listing.create(title: 'Large 6 bed house', description: 'Lorem ipsum dolor sit amet', location:'Harlesden', price_per_night: 800.00)
 
-      listing = Listing.search(location:"London", keyword:"studio")
+      listing = Listing.search(location:"London", keyword:"studio", max_price: 300.00)
       expect(listing.length).to eq 1 
       expect(listing.first.title).to eq 'Lovely studio in Camden Town'
       expect(listing.first.location).to eq 'London'
       expect(listing.first.description).to eq 'Lorem ipsum dolor sit amet'
 
-      listing2 = Listing.search(location:"London", keyword:"Lorem")
+      listing2 = Listing.search(location:"London", keyword:"Lorem", max_price: 300.00)
       expect(listing2.length).to eq 1 
       expect(listing2.first.title).to eq 'Lovely studio in Camden Town'
       expect(listing2.first.location).to eq 'London'
       expect(listing2.first.description).to eq 'Lorem ipsum dolor sit amet'
+
+      listing3 = Listing.search(location:"London", keyword:"ipsum", max_price: 400.00)
+      expect(listing3.length).to eq 2
+      expect(listing3.first.title).to eq '2 bed  apartment'
+      expect(listing3.first.location).to eq 'London'
+      expect(listing3.first.description).to eq 'ipsum dolor sit amet'
+      expect(listing3.last.title).to eq 'Lovely studio in Camden Town'
     end
   end
 end
