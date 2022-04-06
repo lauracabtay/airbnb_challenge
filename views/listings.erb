@@ -4,7 +4,7 @@
 
 <% @listings.each do |listing| %>
   <div class = "entry">
-  <%= listing.title %> 
+  <a href="../listings/<%= listing.id %>"><%= listing.title %></a>
   <%= listing.location %>
   <a>£<%= listing.price_per_night %>/night </a>
   </div>
