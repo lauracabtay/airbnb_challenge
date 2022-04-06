@@ -3,8 +3,6 @@ require 'sinatra/reloader'
 require './lib/listing.rb'
 
 class MakersBnB < Sinatra::Base
-
-  enable :sessions
   
   get '/' do
     'Test'
@@ -22,13 +20,11 @@ class MakersBnB < Sinatra::Base
   post '/listing-created' do
     @new_listing = Listing.create(title: params[:title], description: params[:description], location: params[:location], 
     price_per_night: params[:price_per_night])
-    redirect ('/listings/:id')
+    redirect to "/listings/#{@new_listing.id}"
   end
 
   get '/listings/:id' do
-    @property_id = params[:id]
-    @property = Listing.view_property(id: params[:id])
-    p params
+    @property = Listing.find_property_by_id(id: params[:id])
     erb :property_view
   end
   

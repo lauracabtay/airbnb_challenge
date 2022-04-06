@@ -1,1 +1,6 @@
-<%= @property.title %> 
+<% @property.each do | p | %>
+    <%= p.title %>
+    <%= p.description %>
+    <%= p.location %>
+    £<%= p.price_per_night %> / night
+<% end %>
