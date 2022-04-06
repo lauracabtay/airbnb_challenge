@@ -52,4 +52,44 @@ RSpec.describe Listing do
         expect(listing.first.price_per_night). to eq "600.00"
     end
   end
+
+  describe '.search' do
+    it "pulls the listings according to search criteria" do
+      connection = PG.connect(dbname: "makersbnb_test")
+      connection.exec("INSERT INTO listing (title, description, location, price_per_night)
+      values (
+              '2 bed  apartment',
+              'Lorem ipsum dolor sit amet',
+              'Hackney',
+              350.00
+          );")
+      connection.exec("insert into listing (title, description, location, price_per_night)
+      values (
+              'Lovely studio in Camden Town',
+              'Lorem ipsum dolor sit amet.',
+              'Camden Town',
+              280.00
+          );")
+      connection.exec("insert into listing (title, description, location, price_per_night)
+      values (
+              '3 bed flat in Camden Town',
+              'Lorem ipsum dolor sit amet.',
+              'Camden Town',
+              900.00
+          );")
+  
+      connection.exec("insert into listing (title, description, location, price_per_night)
+      values (
+              'Large 6 bed house',
+              'Lorem ipsum dolor sit amet.',
+              'Harlesden',
+              800.00
+          );")
+
+      listing = Listing.search(location: "Camden Town")
+      expect(listing.length).to eq 2
+      expect(listing.first.title). to eq 'Lovely studio in Camden Town'
+      expect(listing.first.location). to eq 'Camden Town'
+    end
+  end
 end
