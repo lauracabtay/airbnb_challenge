@@ -55,14 +55,14 @@ class Listing
     location: result[0]['location'], price_per_night: result[0]['price_per_night'])
   end
 
-  def self.search(location:)
+  def self.search(location:, keyword:)
     if ENV['ENVIRONMENT'] == 'test' 
       connection = PG.connect(dbname: "makersbnb_test")
     else
       connection = PG.connect(dbname: 'makersbnb')
     end
 
-    result = connection.exec_params("SELECT * FROM listing WHERE location = $1;",[location])
+    result = connection.exec_params("SELECT * FROM listing WHERE location = $1 AND title LIKE %'$2'%;",[location, keyword])
     result.map do |listing|
       Listing.new(id: listing['id'], title: listing['title'], description: listing['description'], location: listing['location'], price_per_night: listing['price_per_night'])
     end
