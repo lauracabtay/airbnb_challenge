@@ -62,7 +62,7 @@ class Listing
       connection = PG.connect(dbname: 'makersbnb')
     end
 
-    result = connection.exec_params("SELECT * FROM listing WHERE location = $1 AND title LIKE %'$2'%;",[location, keyword])
+    result = connection.exec_params("SELECT * FROM listing WHERE location = $1 AND (title LIKE '%'||$2||'%' OR description LIKE '%'||$2||'%');",[location, keyword])
     result.map do |listing|
       Listing.new(id: listing['id'], title: listing['title'], description: listing['description'], location: listing['location'], price_per_night: listing['price_per_night'])
     end

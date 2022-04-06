@@ -50,6 +50,7 @@ feature "search listings" do
     
     visit("/listings")
 
+    fill_in('location', with: 'London')
     fill_in('keyword', with: 'studio')
     click_button('Search')
 

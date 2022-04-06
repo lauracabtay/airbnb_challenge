@@ -86,7 +86,7 @@ RSpec.describe Listing do
               800.00
           );")
 
-      listing = Listing.search(location: "Camden Town", keyword:"Lovely studio in Camden Town")
+      listing = Listing.search(location: "Camden Town", keyword:"studio")
       expect(listing.length).to eq 1
       expect(listing.first.title).to eq 'Lovely studio in Camden Town'
       expect(listing.first.location).to eq 'Camden Town'
@@ -96,17 +96,17 @@ RSpec.describe Listing do
       Listing.create(title: '2 bed  apartment', description: 'ipsum dolor sit amet', location:'London', price_per_night: 350.00)
       Listing.create(title: 'Lovely studio in Camden Town', description: 'Lorem ipsum dolor sit amet', location:'London', price_per_night: 280.00)
 
-      listing = Listing.search(location:"Camden Town", keyword:"studio")
+      listing = Listing.search(location:"London", keyword:"studio")
       expect(listing.length).to eq 1 
       expect(listing.first.title).to eq 'Lovely studio in Camden Town'
-      expect(listing.first.location).to eq 'Camden Town'
+      expect(listing.first.location).to eq 'London'
       expect(listing.first.description).to eq 'Lorem ipsum dolor sit amet'
 
-      listing = Listing.search(keyword: "Lorem")
-      expect(listing.length).to eq 1 
-      expect(listing.first.title).to eq 'Lovely studio in Camden Town'
-      expect(listing.first.location).to eq 'Camden Town'
-      expect(listing.first.description).to eq 'Lorem ipsum dolor sit amet'
+      listing2 = Listing.search(location:"London", keyword:"Lorem")
+      expect(listing2.length).to eq 1 
+      expect(listing2.first.title).to eq 'Lovely studio in Camden Town'
+      expect(listing2.first.location).to eq 'London'
+      expect(listing2.first.description).to eq 'Lorem ipsum dolor sit amet'
     end
   end
 end
