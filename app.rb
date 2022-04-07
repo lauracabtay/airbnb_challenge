@@ -2,11 +2,14 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/listing.rb'
 require './lib/user.rb'
+require 'rack-flash'
+
 
 class MakersBnB < Sinatra::Base
 
   enable :sessions
-  
+  use Rack::Flash
+
   get '/' do
     erb :index
   end
@@ -59,9 +62,14 @@ class MakersBnB < Sinatra::Base
     
   post '/sessions' do 
     @user = User.authenticate(username: params[:username], password: params[:password])
-    session[:username] = @user.username
-    redirect('/listings')
+    if @user
+      session[:username] = @user.username
+      redirect('/listings')
+    else 
+      flash[:notice] = 'Wrong username or password. Try again or register now.'
+      redirect('/')
+    end
   end
- 
+
   run! if app_file == $0
 end

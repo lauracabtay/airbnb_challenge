@@ -16,6 +16,18 @@ RSpec.describe User do
             expect(authenticated_user.username).to eq user1.username
             expect(authenticated_user.user_id).to eq user1.user_id
         end
+
+        it 'returns nil if the user does not exist' do
+            user1 = User.register(username: 'random123', password: "password1")
+            authenticated_user = User.authenticate(username:'juliana1010', password:'password1')
+            expect(authenticated_user).to eq nil
+        end
+
+        it 'returns nil if the password does not match' do
+            user1 = User.register(username: 'random123', password: "password1")
+            authenticated_user = User.authenticate(username:'random123', password:'password')
+            expect(authenticated_user).to eq nil
+        end
     end
 end
 
