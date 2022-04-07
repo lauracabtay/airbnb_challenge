@@ -25,4 +25,18 @@ class User
         User.new(user_id: result[0]['user_id'], username: result[0]['username'])
     end
 
+    def self.authenticate(username:, password:)
+        if ENV['ENVIRONMENT'] == 'test' 
+            connection = PG.connect(dbname: "makersbnb_test")
+        else
+            connection = PG.connect(dbname: 'makersbnb')
+        end
+
+        result = connection.query(
+            "SELECT * FROM users WHERE username = $1",
+            [username]
+          )
+
+        User.new(user_id: result[0]['user_id'], username: result[0]['username'])
+    end
 end

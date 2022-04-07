@@ -29,6 +29,7 @@ class MakersBnB < Sinatra::Base
   
   get '/listings' do
     @listings = Listing.all
+    @user_authenticated = session[:username]
     erb :listings
   end
 
@@ -51,7 +52,16 @@ class MakersBnB < Sinatra::Base
     @listing_search = Listing.search(location: params[:location], keyword: params[:keyword], max_price: params[:max_price])
     erb :search_listings
   end
+
+  get '/signinpage' do
+    erb :signin
+  end
     
+  post '/sessions' do 
+    @user = User.authenticate(username: params[:username], password: params[:password])
+    session[:username] = @user.username
+    redirect('/listings')
+  end
  
   run! if app_file == $0
 end
