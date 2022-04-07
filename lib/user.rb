@@ -20,7 +20,7 @@ class User
 
         result = connection.exec_params("INSERT INTO users (username, password)
         VALUES ($1, $2)
-        RETURNING username, password;",[username, encrypted_password])
+        RETURNING user_id, username, password;",[username, encrypted_password])
 
         User.new(user_id: result[0]['user_id'], username: result[0]['username'])
     end
