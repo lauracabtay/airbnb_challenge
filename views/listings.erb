@@ -3,6 +3,10 @@ Welcome <%= @user_authenticated %>!
   <input type='submit' value='Create a new listing'>
 </form>
 
+<form action="/sessions/logged-out" method="post">
+  <input type="submit" value="Sign out">
+</form>
+
 <form action='/listing-search' method="get">
   <input type='text' name="location" placeholder="Where would you like to go?">
   <input type='text' name="keyword" placeholder="Search keywords">
