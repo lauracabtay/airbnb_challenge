@@ -10,6 +10,7 @@ gem "capybara"
 gem "rake"
 gem 'pg'
 gem 'webrick'
+gem 'bcrypt'
 
 
 gem 'capybara', group: :test

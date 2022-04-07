@@ -1,11 +1,30 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/listing.rb'
+require './lib/user.rb'
 
 class MakersBnB < Sinatra::Base
+
+  enable :sessions
   
   get '/' do
-    'Test'
+    erb :index
+  end
+
+  get '/new-user' do
+    erb :new_user
+  end
+
+  post '/registered' do
+    #this is where we will create the user.
+    @new_user = User.register(username: params[:username], password: params[:password])
+    session[:username] = @new_user.username
+    redirect to "/welcome-user"
+  end
+
+  get '/welcome-user' do
+    @username = session[:username]
+    erb :welcome_user
   end
   
   get '/listings' do
@@ -33,5 +52,6 @@ class MakersBnB < Sinatra::Base
     erb :search_listings
   end
     
+ 
   run! if app_file == $0
 end
