@@ -28,7 +28,7 @@ Create Table calendar (
 Create Table users (
     User_id serial primary key,
     username varchar(30),
-    password varchar(10)
+    password varchar(140)
 );
 --hosts
 Create Table hosts (
