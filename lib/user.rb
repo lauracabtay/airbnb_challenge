@@ -36,7 +36,8 @@ class User
             "SELECT * FROM users WHERE username = $1",
             [username]
           )
-
+        return unless result.any?
+        return unless BCrypt::Password.new(result[0]['password']) == password
         User.new(user_id: result[0]['user_id'], username: result[0]['username'])
     end
 end

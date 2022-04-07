@@ -11,6 +11,7 @@ gem "rake"
 gem 'pg'
 gem 'webrick'
 gem 'bcrypt'
+gem 'rack-flash3'
 
 
 gem 'capybara', group: :test
