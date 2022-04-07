@@ -71,5 +71,11 @@ class MakersBnB < Sinatra::Base
     end
   end
 
+  post '/sessions/logged-out' do
+    session.clear
+    flash[:notice] = "You have signed out."
+    redirect('/')
+  end
+
   run! if app_file == $0
 end
