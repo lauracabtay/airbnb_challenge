@@ -24,6 +24,7 @@
 .product-search {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   background: white;
   border-radius: 5px;
   margin: 0 auto;
@@ -32,9 +33,7 @@
 }
 
 .search-element {
-  display: flex;
-  flex-grow: 2;
-  flex-direction: column;
+  display: inline;
   border-right: 1px solid rgba(10,10,10,.1);
   padding: 1em;
 }
@@ -62,7 +61,6 @@
   flex-grow: 1;
   height: 50px;
   line-height: 50px;
-  padding: 0 2em;
   text-align: center;
   font-size: 1.2em;
   font-weight: 100;
@@ -80,6 +78,9 @@
   background-color: HSLA(345, 100%, 60%, 1.00);
 }
 
+.search-box {
+  display: inline;
+}
 </style>
 </head>
 <body>
@@ -101,8 +102,9 @@
 <h2 style="text-align: center;">Welcome <%= @user_authenticated %>!</h2>
 
 <div class="product-search">
-<form action='/listing-search' method="get">
+<form action='/listing-search' method="get" class="search-box">
 <div class="search-element">
+
   <input class="search-label" type='text' name="location" placeholder="Where are you going?">
   </div>
   <div class="search-element">
