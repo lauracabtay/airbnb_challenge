@@ -3,6 +3,8 @@
 <head>
 <style>
 
+
+
 .hero-image {
   background-image: url("https://images.squarespace-cdn.com/content/v1/5cf6ba117951ba0001a616e1/1609240053529-IIXKYL6VYUG7ZAL7SKOU/cozy+mountain+cabin?format=2500w");
   background-color: #cccccc;
@@ -98,6 +100,9 @@ background-color: #e7e7e7;
 <h2>Your dream vacation is just few clicks away</h2> </br></br>
 <div class="product-search">
 <div class="search-element">
+<h2>
+   <%= flash[:notice] %>
+ </h2>
 <form action="/new-user">
 <input type='submit' value="Register as a new user" class="button button1">
 </form>

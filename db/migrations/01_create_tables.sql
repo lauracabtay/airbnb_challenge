@@ -4,7 +4,9 @@ CREATE TABLE listing (
     title varchar(60),
     description varchar(250),
     location varchar(120),
-    price_per_night decimal(7, 2)
+    price_per_night decimal(7, 2),
+    host_id INTEGER,
+    CONSTRAINT fk_host_id FOREIGN KEY(host_id) REFERENCES users(user_id)
 );
 --booking_table
 Create Table booking (
