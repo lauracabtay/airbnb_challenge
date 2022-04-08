@@ -9,14 +9,13 @@ class MakersBnB < Sinatra::Base
 
   use Rack::Flash
   enable :sessions
-  set :public_folder, proc{File.join(__dir__,'public')}
 
   get '/' do
-    erb :index, {layout: :layout}
+    erb :index
   end
 
   get '/new-user' do
-    erb :new_user, {layout: :layout}
+    erb :new_user
   end
 
   post '/registered' do
@@ -29,18 +28,18 @@ class MakersBnB < Sinatra::Base
 
   get '/welcome-user' do
     @username = session[:username]
-    erb :welcome_user, {layout: :layout}
+    erb :welcome_user
   end
   
   get '/listings' do
     @listings = Listing.all
     @user_authenticated = session[:username]
     @user_id = session[:user_id]
-    erb :listings, {layout: :layout}
+    erb :listings
   end
 
   get '/new-listing' do
-    erb :new_listing, {layout: :layout}
+    erb :new_listing
   end
 
   post '/listing-created' do
@@ -51,18 +50,18 @@ class MakersBnB < Sinatra::Base
 
   get '/listings/:id' do
     @property = Listing.find_property_by_id(id: params[:id])
-    erb :property_view, {layout: :layout}
+    erb :property_view
   end
 
   get '/listing-search' do
     @listing_search = Listing.search(location: params[:location], keyword: params[:keyword], max_price: params[:max_price])
-    erb :search_listings, {layout: :layout}
+    erb :search_listings
   end
 
   get '/my-listings' do
     @my_listings = Listing.view_my_listings(user_id: session[:user_id])
     if @my_listings.length > 0
-    erb :my_listings, {layout: :layout}
+    erb :my_listings
     else
       flash[:notice] = "You have no listing. Please create a listing"
       redirect ('/new-listing')
@@ -70,7 +69,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/signinpage' do
-    erb :signin, {layout: :layout}
+    erb :signin
   end
     
   post '/sessions' do 
