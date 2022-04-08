@@ -8,7 +8,7 @@ require 'rack-flash'
 class MakersBnB < Sinatra::Base
 
   use Rack::Flash
-  enable :sessions
+  enable :sessions, :method_override
 
   get '/' do
     erb :index
@@ -67,6 +67,11 @@ class MakersBnB < Sinatra::Base
       redirect ('/new-listing')
     end
   end
+
+  delete '/listings/:id' do
+        Listing.delete(id: params[:id])
+        redirect '/my-listings'
+    end
 
   get '/signinpage' do
     erb :signin

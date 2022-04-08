@@ -117,4 +117,20 @@ RSpec.describe Listing do
       expect(my_listings.first.title).to eq '2 bed apartment'
     end
   end
+
+  describe ".delete" do
+    it "allows a host to delete a listing" do
+      connection = PG.connect(dbname: "makersbnb_test")
+      user1 = connection.exec("INSERT INTO users (username, password) values ('laila123', 'password') RETURNING user_id;")
+
+      listing1 = Listing.create(title: '2 bed apartment', description: 'ipsum dolor sit amet', location:'London', price_per_night: 350.00, host_id: user1[0]['user_id'])
+      listing2 = Listing.create(title: 'Lovely studio in Camden Town', description: 'Lorem ipsum dolor sit amet', location:'London', price_per_night: 280.00, host_id: user1[0]['user_id'])
+
+      Listing.delete(id: listing1.id)
+      my_listings = Listing.view_my_listings(user_id: user1[0]['user_id'])
+
+      expect(my_listings.length).to eq 1
+      expect(my_listings.first.title).to eq 'Lovely studio in Camden Town'
+    end
+  end
 end

@@ -87,4 +87,14 @@ class Listing
       host_id: listing['host_id'])
     end
   end
+
+  def self.delete(id:)
+    if ENV['ENVIRONMENT'] == 'test' 
+      connection = PG.connect(dbname: "makersbnb_test")
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+
+    connection.exec("DELETE FROM listing WHERE id = $1;", [id])
+  end
 end
