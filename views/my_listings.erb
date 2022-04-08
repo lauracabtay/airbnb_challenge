@@ -1,0 +1,12 @@
+
+  <% @my_listings.each do |listing| %>
+    <div class = "entry">
+    <a href="../listings/<%= listing.id %>"><%= listing.title %></a>
+    <%= listing.location %>
+    <a>£<%= listing.price_per_night %>/night </a>
+    </div>
+  <% end %>
+
+  <form action='/listings'>
+    <input type="submit" value="Back to all listings">
+</form>
