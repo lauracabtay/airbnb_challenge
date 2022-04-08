@@ -1,8 +1,89 @@
-Welcome <%= @user_authenticated %>!
-<form action='/new-listing'>
-  <input type='submit' value='Create a new listing'>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
 
+  .hero-text {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.button {
+        display: inline-block;
+        vertical-align: top;
+        float: right;
+
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+
+.product-search {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 5px;
+  margin: 0 auto;
+  box-shadow: rgba(0,0,0,.172549) 0 6px 12px 0;
+  cursor: pointer;
+}
+
+.search-element {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  border-right: 1px solid rgba(10,10,10,.1);
+  padding: 1em;
+}
+
+.search-label {
+  font-weight: 700;
+}
+
+.search-input {
+  border: none;
+  appearance: none;
+  outline: none;
+  width: 100%;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  margin-top: 5px;
+}
+
+.search-input:focus {
+  box-shadow: 0px 2px 0px 0px tomato;
+}
+
+.search-button {
+  display: inline-block;
+  flex-grow: 1;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 2em;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 100;
+  border: 0;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: black;
+  background-color: light-grey;
+  transition: background-color 0.8s ease;
+}
+
+.search-button:hover {
+  background-color: HSLA(345, 100%, 60%, 1.00);
+}
+
+</style>
+</head>
+<body>
+<section class="button">
 <form action="/my-listings" method="get">
     <input type="submit" value="My listings">
 </form>
@@ -10,14 +91,34 @@ Welcome <%= @user_authenticated %>!
 <form action="/sessions/logged-out" method="post">
   <input type="submit" value="Sign out">
 </form>
-
-<form action='/listing-search' method="get">
-  <input type='text' name="location" placeholder="Where would you like to go?">
-  <input type='text' name="keyword" placeholder="Search keywords">
-  <input type='text' name="max_price" placeholder="Enter max price">
-  <input type='submit' value='Search'>
+</br>
+<form action='/new-listing'>
+  <input type='submit' value='Create a new listing'>
 </form>
+</section>
+
+
+
+<div class="hero-text">
+<h2 style="text-align: center;">Welcome <%= @user_authenticated %>!</h2>
+
+<div class="product-search">
+<div class="search-element">
+<form action='/listing-search' method="get">
+  <input class="search-label" type='text' name="location" placeholder="Where are you going?">
+  </div>
+  <div class="search-element">
+  <input class="search-label" type='text' name="keyword" placeholder="Search keywords">
+  </div>
+  <div class="search-element">
+  <input class="search-label" type='text' name="max_price" placeholder="Enter max price">
+  </div>
+  <input class="search-button" type='submit' value='Search'>
+</form>
+</div>
   
+  <br>
+
 <% @listings.each do |listing| %>
   <div class = "entry">
   <a href="../listings/<%= listing.id %>"><%= listing.title %></a>
@@ -25,3 +126,7 @@ Welcome <%= @user_authenticated %>!
   <a>£<%= listing.price_per_night %>/night </a>
   </div>
   <% end %>
+
+  </div>
+</body>
+</html>
