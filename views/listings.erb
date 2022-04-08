@@ -3,6 +3,10 @@ Welcome <%= @user_authenticated %>!
   <input type='submit' value='Create a new listing'>
 </form>
 
+<form action="/my-listings" method="get">
+    <input type="submit" value="My listings">
+</form>
+
 <form action="/sessions/logged-out" method="post">
   <input type="submit" value="Sign out">
 </form>

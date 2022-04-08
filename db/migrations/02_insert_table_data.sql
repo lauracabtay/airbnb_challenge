@@ -125,10 +125,3 @@ insert into users (username, password)
 values ('test2@example.com', 'Password2');
 insert into users (username, password)
 values ('test3@example.com', 'Password3');
---host table
-insert into hosts (user_id, listing_id)
-values (2, 1);
-insert into hosts (user_id, listing_id)
-values (3, 2);
-insert into hosts (user_id, listing_id)
-values (1, 3);
