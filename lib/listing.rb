@@ -97,4 +97,16 @@ class Listing
 
     connection.exec("DELETE FROM listing WHERE id = $1;", [id])
   end
+
+  def self.edit(id:, title:, description:, location:, price_per_night:)
+    if ENV['ENVIRONMENT'] == 'test' 
+      connection = PG.connect(dbname: "makersbnb_test")
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+
+    result = connection.exec_params("UPDATE listing SET title = $1, description = $2, location = $3, price_per_night = $4 WHERE id = $5 RETURNING id, title, description, location, price_per_night, host_id;", [title, description, location, price_per_night, id]);
+
+    Listing.new(id: result[0]['id'], title: result[0]['title'], description: result[0]['description'], location: result[0]['location'], price_per_night:result[0]['price_per_night'].to_f, host_id: result[0]['host_id'])
+  end
 end

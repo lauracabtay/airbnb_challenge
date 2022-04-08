@@ -73,6 +73,16 @@ class MakersBnB < Sinatra::Base
         redirect '/my-listings'
     end
 
+    get '/listings/:id/edit' do
+        @listing_id = params[:id]
+        erb :'listings/edit'
+    end
+
+    patch '/listings/:id' do
+        Listing.edit(id: params[:id], title: params[:title], description: params[:description], location: params[:location], price_per_night: params[:price_per_night])
+        redirect('/my-listings')
+    end
+
   get '/signinpage' do
     erb :signin
   end

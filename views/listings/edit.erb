@@ -1,0 +1,8 @@
+<form action="/listings/<%= @listing_id %>" method="post">
+  <input type="hidden" name="_method" value="PATCH" />
+    <input type='text' name='title' class='title' placeholder='Enter a title'>
+    <input type='text' name='description' class='description' placeholder='Enter a description'>
+    <input type='text' name='location' class='location' placeholder='Enter a location'>
+    <input type='text' name='price_per_night' class='price-per-night' placeholder='Enter a price per night'>
+  <input type="submit" value="Submit" />
+</form>

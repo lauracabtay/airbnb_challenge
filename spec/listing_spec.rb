@@ -133,4 +133,17 @@ RSpec.describe Listing do
       expect(my_listings.first.title).to eq 'Lovely studio in Camden Town'
     end
   end
+
+  describe ".edit" do
+    it "allows a host to edit a listing" do
+      connection = PG.connect(dbname: "makersbnb_test")
+      user1 = connection.exec("INSERT INTO users (username, password) values ('laila123', 'password') RETURNING user_id;")
+
+      listing1 = Listing.create(title: '2 bed apartment', description: 'ipsum dolor sit amet', location:'London', price_per_night: 350.00, host_id: user1[0]['user_id'])
+      listing1 = Listing.edit(id: listing1.id, title: '2 bed apartment', description: 'ipsum dolor sit amet', location:'London', price_per_night: 450.00)
+
+      expect(listing1.price_per_night).to eq 450.00
+      expect(listing1.price_per_night).not_to eq 350.00
+    end
+  end
 end
