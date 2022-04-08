@@ -75,6 +75,7 @@ class MakersBnB < Sinatra::Base
 
     get '/listings/:id/edit' do
         @listing_id = params[:id]
+        @listing = Listing.find_property_by_id(id: params[:id]).first
         erb :'listings/edit'
     end
 
