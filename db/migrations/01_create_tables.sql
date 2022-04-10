@@ -1,40 +1,40 @@
 --listing_table
 CREATE TABLE listing (
-    id serial primary key,
-    title varchar(60),
-    description varchar(250),
-    location varchar(120),
-    price_per_night decimal(7, 2),
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(60),
+    description VARCHAR(250),
+    location VARCHAR(120),
+    price_per_night DECIMAL(7, 2),
     host_id INTEGER,
     CONSTRAINT fk_host_id FOREIGN KEY(host_id) REFERENCES users(user_id)
 );
 --booking_table
-Create Table booking (
-    booking_id serial primary key,
-    booking_date date,
-    property_id integer,
-    booked_by integer,
-    start_date date,
-    end_date date,
-    price decimal(7, 2),
-    booking_status integer
+CREATE TABLE booking (
+    booking_id SERIAL PRIMARY KEY,
+    booking_date DATE,
+    property_id INTEGER,
+    booked_by INTEGER,
+    start_date DATE,
+    end_date DATE,
+    price DECIMAL(7, 2),
+    booking_status INTEGER
 );
 --calendar_table
-Create Table calendar (
-    id serial primary key,
-    property_id integer,
-    is_available boolean,
-    date date
+CREATE TABLE calendar (
+    id SERIAL PRIMARY KEY,
+    property_id INTEGER,
+    is_available BOOLEAN,
+    date DATE
 );
 --users
-Create Table users (
-    User_id serial primary key,
-    username varchar(30),
-    password varchar(140)
+CREATE TABLE users (
+    User_id SERIAL PRIMARY KEY,
+    username VARCHAR(30),
+    password VARCHAR(140)
 );
 --hosts
-Create Table hosts (
-    Host_id serial primary key,
-    user_id integer,
-    listing_id integer
+CREATE TABLE hosts (
+    Host_id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    listing_id INTEGER
 );

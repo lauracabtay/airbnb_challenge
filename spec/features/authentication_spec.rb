@@ -8,11 +8,10 @@ feature 'authentication' do
     fill_in(:password, with: 'password123')
     click_button('Submit')
     
-
     expect(page).to have_content 'Welcome laila123!'
     end
 
-    scenario "user does not exit" do
+    scenario "username is not correct" do
         User.register(username:"random123", password: "randompassword")
         visit '/'
         click_button('Sign in')

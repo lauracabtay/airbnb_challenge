@@ -1,27 +1,27 @@
 --Listing table
-insert into listing (title, description, location, price_per_night)
-values (
+INSERT INTO listing (title, description, location, price_per_night)
+VALUES (
         '2 bed  apartment',
         'Lorem ipsum dolor sit amet',
         'London',
         350.00
     );
-insert into listing (title, description, location, price_per_night)
-values (
+INSERT INTO listing (title, description, location, price_per_night)
+VALUES (
         'Lovely studio in Camden Town',
         'Lorem ipsum dolor sit amet.',
         'London',
         280.00
     );
-insert into listing (title, description, location, price_per_night)
-values (
+INSERT INTO listing (title, description, location, price_per_night)
+VALUES (
         'Luxury apartment in Chelsea',
         'Lorem ipsum dolor sit amet.',
         'London',
         600.00
     );
 --Booking table
-insert into booking (
+INSERT INTO booking (
         booking_date,
         property_id,
         booked_by,
@@ -30,7 +30,7 @@ insert into booking (
         price,
         booking_status
     )
-values (
+VALUES (
         '2022-04-04',
         1,
         1,
@@ -39,7 +39,7 @@ values (
         1050.00,
         1
     );
-insert into booking (
+INSERT INTO booking (
         booking_date,
         property_id,
         booked_by,
@@ -48,7 +48,7 @@ insert into booking (
         price,
         booking_status
     )
-values (
+VALUES (
         '2022-04-04',
         3,
         2,
@@ -57,7 +57,7 @@ values (
         4200.00,
         -1
     );
-insert into booking (
+INSERT INTO booking (
         booking_date,
         property_id,
         booked_by,
@@ -66,7 +66,7 @@ insert into booking (
         price,
         booking_status
     )
-values (
+VALUES (
         '2022-04-05',
         2,
         3,
@@ -76,52 +76,52 @@ values (
         0
     );
 --Calendar table
-insert into calendar (property_id, is_available, date)
-values (1, TRUE, '2022-04-04');
-insert into calendar (property_id, is_available, date)
-values (1, TRUE, '2022-04-05');
-insert into calendar (property_id, is_available, date)
-values (1, TRUE, '2022-04-06');
-insert into calendar (property_id, is_available, date)
-values (1, FALSE, '2022-04-07');
-insert into calendar (property_id, is_available, date)
-values (1, FALSE, '2022-04-08');
-insert into calendar (property_id, is_available, date)
-values (1, FALSE, '2022-04-09');
-insert into calendar (property_id, is_available, date)
-values (1, TRUE, '2022-04-10');
-insert into calendar (property_id, is_available, date)
-values (2, TRUE, '2022-04-04');
-insert into calendar (property_id, is_available, date)
-values (2, TRUE, '2022-04-05');
-insert into calendar (property_id, is_available, date)
-values (2, FALSE, '2022-04-06');
-insert into calendar (property_id, is_available, date)
-values (2, FALSE, '2022-04-07');
-insert into calendar (property_id, is_available, date)
-values (2, TRUE, '2022-04-08');
-insert into calendar (property_id, is_available, date)
-values (2, TRUE, '2022-04-09');
-insert into calendar (property_id, is_available, date)
-values (2, TRUE, '2022-04-10');
-insert into calendar (property_id, is_available, date)
-values (3, TRUE, '2022-04-04');
-insert into calendar (property_id, is_available, date)
-values (3, TRUE, '2022-04-05');
-insert into calendar (property_id, is_available, date)
-values (3, TRUE, '2022-04-06');
-insert into calendar (property_id, is_available, date)
-values (3, TRUE, '2022-04-07');
-insert into calendar (property_id, is_available, date)
-values (3, TRUE, '2022-04-08');
-insert into calendar (property_id, is_available, date)
-values (3, TRUE, '2022-04-09');
-insert into calendar (property_id, is_available, date)
-values (3, TRUE, '2022-04-10');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (1, TRUE, '2022-04-04');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (1, TRUE, '2022-04-05');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (1, TRUE, '2022-04-06');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (1, FALSE, '2022-04-07');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (1, FALSE, '2022-04-08');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (1, FALSE, '2022-04-09');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (1, TRUE, '2022-04-10');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (2, TRUE, '2022-04-04');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (2, TRUE, '2022-04-05');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (2, FALSE, '2022-04-06');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (2, FALSE, '2022-04-07');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (2, TRUE, '2022-04-08');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (2, TRUE, '2022-04-09');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (2, TRUE, '2022-04-10');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (3, TRUE, '2022-04-04');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (3, TRUE, '2022-04-05');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (3, TRUE, '2022-04-06');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (3, TRUE, '2022-04-07');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (3, TRUE, '2022-04-08');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (3, TRUE, '2022-04-09');
+INSERT INTO calendar (property_id, is_available, date)
+VALUES (3, TRUE, '2022-04-10');
 --users table
-insert into users (username, password)
-values ('test@example.com', 'Password1');
-insert into users (username, password)
-values ('test2@example.com', 'Password2');
-insert into users (username, password)
-values ('test3@example.com', 'Password3');
+INSERT INTO users (username, password)
+VALUES ('test@example.com', 'Password1');
+INSERT INTO users (username, password)
+VALUES ('test2@example.com', 'Password2');
+INSERT INTO users (username, password)
+VALUES ('test3@example.com', 'Password3');

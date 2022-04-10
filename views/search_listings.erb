@@ -1,3 +1,4 @@
+<h3>There are <%= @listing_search.count %> results for your search:</h3>
 <% @listing_search.each do |listing| %>
   <div class = "entry">
   <a href="../listings/<%= listing.id %>"><%= listing.title %></a>
@@ -5,3 +6,7 @@
   <a>£<%= listing.price_per_night %>/night </a>
   </div>
 <% end %>
+
+<form action='/listings'>
+  <input type="submit" value="Back to all listings">
+</form>

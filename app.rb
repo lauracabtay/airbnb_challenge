@@ -9,9 +9,10 @@ class MakersBnB < Sinatra::Base
 
   use Rack::Flash
   enable :sessions, :method_override
+  set :public_folder, proc{File.join(__dir__,'public')}
 
   get '/' do
-    erb :index
+    erb :index, {layout: :layout}
   end
 
   get '/new-user' do

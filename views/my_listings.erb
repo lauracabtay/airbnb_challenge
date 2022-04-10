@@ -1,26 +1,22 @@
-<style> 
+<div class="hero-text-mylistings">
+  <h2 class="text"> My Listings </h2>
+</div>
 
-.entry, .inline-form {
-  display: inline;
-}
-
-</style>
-
-  <% @my_listings.each do |listing| %>
-    <div class = "entry">
+<% @my_listings.each do |listing| %>
+  <div class = "entry">
     <a href="../listings/<%= listing.id %>"><%= listing.title %></a>
     <%= listing.location %>
     <a>£<%= listing.price_per_night %>/night </a>
-    </div>
     <form action="../listings/<%= listing.id %>/edit" method="get" class="inline-form">
-      <input type="submit" value="Edit">
+      <input type="submit" value="Edit" class="edit-button">
     </form>
     <form action="../listings/<%= listing.id %>" method="post" class="inline-form">
-      <input type="hidden" name="_method" value="DELETE" />
-      <input type="submit" value="Delete">
+      <input type="hidden" name="_method" value="DELETE"/>
+      <input type="submit" value="Delete" class="delete-button">
     </form>
-  <% end %>
+  </div>
+<% end %>
 
-  <form action='/listings'>
-    <input type="submit" value="Back to all listings">
+<form action='/listings'>
+  <input type="submit" value="Back to all listings">
 </form>
